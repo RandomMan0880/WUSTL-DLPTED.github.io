@@ -1,6 +1,6 @@
 // app.js
-import * as THREE from 'three';
-import { loader } from 'ami.js';
+const THREE = require('three');
+const { loader } = require('ami.js');
 
 const files = [
   'https://RandomMan0880.github.io/WUSTL-DLPTED/6314_3Dlow (1).nii'
