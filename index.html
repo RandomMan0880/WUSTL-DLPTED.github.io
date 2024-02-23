@@ -6,14 +6,8 @@
 </head>
 <body>
     <canvas id="gl" width="640" height="640"></canvas>
-    <script src="https://unpkg.com/@niivue/niivue@0.32.0/dist/niivue.umd.js"></script>
-    <script>
-        var volumeList = [
-            { url: "https://RandomMan0880.github.io/WUSTL-DLPTED/6314_3Dlow (1).nii" }
-        ];
-        var nv = new Niivue({ isResizeCanvas: false });
-        nv.attachTo("gl");
-        nv.loadVolumes(volumeList);
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r81/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ami.js/0.0.12/ami.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
