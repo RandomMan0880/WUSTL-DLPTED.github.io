@@ -24,12 +24,12 @@
         display: block;
     }
 
-    #viewer {
-        width: auto;
-        height: auto;
+    #viewer-container {
+        width: 100%;
         position: relative; /* Set position to relative */
         overflow: hidden; /* Add overflow:hidden to prevent page movement */
     }
+
 
     .viewer-popup {
         display: none;
@@ -74,7 +74,9 @@
     </div>
 
     <div id="viewer" class="tab-content">
-        <div id="viewer-container" class="papaya" data-params="params"></div>
+        <div id="viewer-container">
+            <div class="papaya" data-params="params"></div>
+        </div>
         <div id="viewer-popup" class="viewer-popup">
             <span class="viewer-close" onclick="closeViewerPopup()">&times;</span>
             <p>To start the viewer, add an image from under the File tab. When changing between scans, please hit "Close All" in the File tab to close the currently opened scan.</p>
@@ -82,6 +84,13 @@
     </div>
 
     <script>
+
+        var params = [""];
+        params["mainView"] = "sagittal";
+        params["showOrientation"] = true;
+        params["worldspace"] = true;
+        params["expandable"] = true;
+          
         function openTab(tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -94,12 +103,11 @@
                 document.getElementById('viewer-popup').style.display = 'block';
             } else {
                 document.getElementById('viewer-popup').style.display = 'none';
+                // Reload the page when switching back to the Introduction tab
+                window.location.reload();
             }
         }
 
-        function closeViewerPopup() {
-            document.getElementById('viewer-popup').style.display = 'none';
-        }
     </script>
 </body>
 
