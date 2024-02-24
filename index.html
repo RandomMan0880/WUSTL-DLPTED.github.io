@@ -23,25 +23,21 @@
             display: block;
         }
 
-        .viewer-container {
-            float: left;
-            width: 50%; /* Set the width to 50% for two viewers side by side */
-            box-sizing: border-box;
-            padding: 0 10px; /* Optional: Add padding between viewers */
-            overflow: auto; /* Make the container scrollable */
+    #viewer {
+            width: 100%;
+            height: 60vh; /* Set the height to 60% of the viewport height */
+            overflow: auto; /* Add overflow:auto to prevent page movement */
+          }
+        .viewer-text {
+            margin-top: 50px; /* Add margin-top for vertical space */
         }
     </style>
 
     <script type="text/javascript">
-        var params1 = [""];
-        params1["mainView"] = "sagittal";
-        params1["showOrientation"] = true;
-        params1["worldspace"] = true;
-
-        var params2 = [""];
-        params2["mainView"] = "sagittal";
-        params2["showOrientation"] = true;
-        params2["worldspace"] = true;
+        var params = [""];
+        params["mainView"] = "sagittal";
+        params["showOrientation"] = true;
+        params["worldspace"] = true;
     </script>
 
 </head>
@@ -64,11 +60,9 @@
     </div>
 
     <div id="viewer" class="tab-content">
-        <div class="viewer-container">
-            <div class="papaya" data-params="params1"></div>
-        </div>
-        <div class="viewer-container">
-            <div class="papaya" data-params="params2"></div>
+        <div id="viewer-container">
+            <div class="papaya" data-params="params"></div>
+            <p class="viewer-text">To start the viewer, add an image from under the File tab.</p>
         </div>
     </div>
 
