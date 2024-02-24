@@ -18,18 +18,21 @@
         .tab-content {
             display: none;
         }
-
+    
         .tab-content.active {
             display: block;
         }
-
-    #viewer {
+    
+        #viewer {
             width: 100%;
-            height: 40vh; /* Set the height to 60% of the viewport height */
-            overflow: auto; /* Add overflow:auto to prevent page movement */
-          }
+            height: 60vh; /* Set the height to 60% of the viewport height */
+            position: relative; /* Set position to relative */
+            overflow: hidden; /* Add overflow:hidden to prevent page movement */
+            margin-bottom: 20px; /* Add margin to create space below the viewer */
+        }
+    
         .viewer-text {
-            margin-top: 50px; /* Add margin-top for vertical space */
+            margin-top: 20px; /* Add margin-top for vertical space */
         }
     </style>
 
