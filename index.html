@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>NiiVue</title>
-</head>
-<body>
-    <canvas id="gl" width="640" height="640"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r81/three.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ami.js/0.0.12/ami.min.js"></script>
-    <script src="app.js"></script>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="papaya.css" />
+        <script type="text/javascript" src="papaya.js"></script>
+        <title>Papaya Viewer</title>
+    </head>
+
+    <body>
+        <!-- Basic Usage -->
+        <div>
+            <h2>Basic Usage</h2>
+            <div class="papaya"></div>
+        </div>
+
+        <!-- Automatic Image Loading and Configuration -->
+        <div>
+            <h2>Automatic Image Loading and Configuration</h2>
+            <script type="text/javascript">
+                var params = [];
+                params["worldSpace"] = true;
+                params["images"] = ["6314_3Dlow (1).nii"];
+                params["surfaces"] = ["data/mySurface.surf.gii"];
+                params["myOverlayImage.nii.gz"] = {"min": 4, "max": 10};
+            </script>
+            <div class="papaya" data-params="params"></div>
+        </div>
+    </body>
 </html>
