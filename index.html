@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -15,47 +16,44 @@
     <title> WUSTL-DLPTED </title>
 
     <style>
-    .tab-content {
-        display: none;
-    }
+        .tab-content {
+            display: none;
+        }
 
-    .tab-content.active {
-        display: block;
-    }
+        .tab-content.active {
+            display: block;
+        }
 
-    #viewer {
-        width: 100%;
-        position: relative; /* Set position to relative */
-        overflow: hidden; /* Add overflow:hidden to prevent page movement */
-    }
+        #viewer {
+            width: 100%;
+            height: 75vh;
+            position: relative; /* Set position to relative */
+            overflow: hidden; /* Add overflow:hidden to prevent page movement */
+        }
 
-    #viewer-tab-body {
-        overflow: hidden; /* Prevent scrolling on the viewer tab */
-    }
+        .viewer-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            padding: 20px;
+            z-index: 9999;
+        }
 
-    .viewer-popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: 1px solid #ccc;
-        background-color: #f9f9f9;
-        padding: 20px;
-        z-index: 9999;
-    }
+        .viewer-close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
 
-    .viewer-close {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        cursor: pointer;
-    }
-
-    .viewer-close:hover {
-        color: red;
-    }
-</style>
+        .viewer-close:hover {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -76,12 +74,10 @@
     </div>
 
     <div id="viewer" class="tab-content">
-        <div id="viewer-tab-body"> <!-- Added wrapper div -->
-            <div id="viewer-container" class="papaya" data-params="params"></div>
-            <div id="viewer-popup" class="viewer-popup">
-                <span class="viewer-close" onclick="closeViewerPopup()">&times;</span>
-                <p>To start the viewer, add an image from under the File tab. When changing between scans, please hit "Close All" in the File tab to close the currently opened scan.</p>
-            </div>
+        <div id="viewer-container" class="papaya" data-params="params"></div>
+        <div id="viewer-popup" class="viewer-popup">
+            <span class="viewer-close" onclick="closeViewerPopup()">&times;</span>
+            <p>To start the viewer, add an image from under the File tab. When changing between scans, please hit "Close All" in the File tab to close the currently opened scan.</p>
         </div>
     </div>
 
