@@ -23,26 +23,75 @@
             display: block;
         }
 
-        #viewer {
-            width: 100%;
-            height: 60vh; /* Set the height to 60% of the viewport height */
-        }
-
-        .viewer-text {
-            margin-top: 200px; /* Add margin-top for vertical space */
+        .viewer-container {
+            float: left;
+            width: 50%; /* Set the width to 50% for two viewers side by side */
+            box-sizing: border-box;
+            padding: 0 10px; /* Optional: Add padding between viewers */
         }
     </style>
 
     <script type="text/javascript">
-        var params = [""];
-        params["mainView"] = "sagittal";
-        params["showOrientation"] = true;
-        params["worldspace"] = true;
+        var params1 = [""];
+        params1["mainView"] = "sagittal";
+        params1["showOrientation"] = true;
+        params1["worldspace"] = true;
+        params1["images"] = ["data/6312.nii.gz"];
+
+        var params2 = [""];
+        params2["mainView"] = "sagittal";
+        params2["showOrientation"] = true;
+        params2["worldspace"] = true;
+        params2["images"] = ["data/6314.nii.gz"];
+
+        var viewer1, viewer2;
+
+        function initializeViewers() {
+            viewer1 = new Papaya.Viewer(document.getElementById('viewer1'), params1);
+            viewer2 = new Papaya.Viewer(document.getElementById('viewer2'), params2);
+        }
+
+        function openTab(tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+
+            // Sync viewers when switching tabs
+            if (tabName === 'viewer') {
+                syncViewers();
+            }
+        }
+
+        function syncViewers() {
+            if (viewer1 && viewer2) {
+                viewer1.viewerSliceX.controller.syncAllViews();
+                viewer2.viewerSliceX.controller.syncAllViews();
+            }
+        }
+
+        // Function to handle selection of image subject 6312
+        function selectSubject6312() {
+            params1["images"] = ["data/6312.nii.gz"]; // Set images for viewer 1
+            params2["images"] = ["data/6312.nii.gz"]; // Set images for viewer 2
+            initializeViewers(); // Reinitialize viewers with new parameters
+            syncViewers(); // Sync viewers after updating images
+        }
+
+        // Function to handle selection of image subject 6314
+        function selectSubject6314() {
+            params1["images"] = ["data/6314.nii.gz"]; // Set images for viewer 1
+            params2["images"] = ["data/6314.nii.gz"]; // Set images for viewer 2
+            initializeViewers(); // Reinitialize viewers with new parameters
+            syncViewers(); // Sync viewers after updating images
+        }
     </script>
 
 </head>
 
-<body>
+<body onload="initializeViewers()">
     <div class="tabs">
         <button class="tablink" onclick="openTab('intro')">Introduction</button>
         <button class="tablink" onclick="openTab('viewer')">Viewer</button>
@@ -53,30 +102,4 @@
 
         <p>
             Deep learning may revolutionize the study of musculoskeletal conditions by automating the evaluation pipeline.
-            This project seeks to develop tissue and modality-specific DL algorithms for automatic evaluation of disease stage
-            to explore post-traumatic elbow conditions using histology, computed tomography, and magnetic resonance imaging.
-            This project is in collaboration with the Musculoskeletal Soft Tissue Laboratory.
-        </p>
-    </div>
-
-    <div id="viewer" class="tab-content">
-        <div id="viewer-container">
-            <div class="papaya" data-params="params"></div>
-            <p class="viewer-text">To start the viewer, add an image from under the File tab. Please hit "Close All" under the Files tab before loading in additional scans.</p>
-        </div>
-    </div>
-
-    <script>
-        function openTab(tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-        }
-    </script>
-</body>
-
-</html>
-
+            This project seeks to develop tissue and modality-specific DL algorithm
