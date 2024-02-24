@@ -1,12 +1,77 @@
-<body style="padding: 20px;">
-    <h1>Welcome to the WUSTL CIG's DL-PTED Project!</h1>
-    
-    <p>
-        Deep learning may revolutionize the study of musculoskeletal conditions by automating the evaluation pipeline.
-        This project seeks to develop tissue and modality-specific DL algorithms for automatic evaluation of disease stage
-        and explore multi-modal in post-traumatic elbow conditions using histology, computed tomography, and magnetic resonance imaging.
-        This project is in collaboration with the Musculoskeletal Soft Tissue Laboratory.
-    </p>
-    
-    <div class="papaya" data-params="params" style="margin-top: 20px;"></div>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- iOS meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="stylesheet" type="text/css" href="papaya.css?build=1468"/>
+    <script type="text/javascript" src="papaya.js?build=1468"></script>
+
+    <title> WUSTL-DLPTED </title>
+
+    <style>
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        #viewer {
+            width: 100%;
+            height: 600px; /* Adjust the height as needed */
+        }
+    </style>
+
+    <script type="text/javascript">
+        var params = [""];
+        params["mainView"] = "sagittal";
+        params["showOrientation"] = true;
+        params["worldspace"] = true;
+    </script>
+
+</head>
+
+<body>
+    <div class="tabs">
+        <button class="tablink" onclick="openTab('intro')">Introduction</button>
+        <button class="tablink" onclick="openTab('viewer')">Viewer</button>
+    </div>
+
+    <div id="intro" class="tab-content active">
+        <h1>Welcome to the WUSTL CIG's DL-PTED Project!</h1>
+
+        <p>
+            Deep learning may revolutionize the study of musculoskeletal conditions by automating the evaluation pipeline.
+            This project seeks to develop tissue and modality-specific DL algorithms for automatic evaluation of disease stage
+            in post-traumatic elbow conditions using histology, computed tomography, and magnetic resonance imaging.
+            This project is in collaboration with WashU's Musculoskeletal Soft Tissue Laboratory.
+        </p>
+    </div>
+
+    <div id="viewer" class="tab-content">
+        <div id="viewer-container">
+            <div class="papaya" data-params="params"></div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+        }
+    </script>
 </body>
+
+</html>
+
