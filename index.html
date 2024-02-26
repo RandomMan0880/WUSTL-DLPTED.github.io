@@ -90,6 +90,10 @@
         params["showOrientation"] = true;
         params["worldspace"] = true;
         params["expandable"] = true;
+
+        function closeViewerPopup() {
+            document.getElementById('viewer-popup').style.display = 'none';
+        }
           
         function openTab(tabName) {
             var i, tabcontent, tablinks;
