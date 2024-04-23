@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -10,8 +8,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <link rel="stylesheet" type="text/css" href="papaya.css?build=1468"/>
-    <script type="text/javascript" src="papaya.js?build=1468"></script>
+    <link rel="stylesheet" type="text/css" href="papaya.css?build=1483" />
+    <script type="text/javascript" src="papaya.js?build=1483"></script>
 
     <title> WUSTL-DLPTED </title>
 
@@ -25,11 +23,10 @@
     }
 
     #viewer-container {
-        width: 100%;
+        width: 80%;
         position: relative; /* Set position to relative */
         overflow: hidden; /* Add overflow:hidden to prevent page movement */
     }
-
 
     .viewer-popup {
         display: none;
@@ -43,9 +40,13 @@
         z-index: 9999;
     }
 
+    .viewer-popup.active {
+        display: block;
+    }
+
     .viewer-close {
         position: absolute;
-        top: 5px;
+        top: 5px;  
         right: 10px;
         cursor: pointer;
     }
@@ -64,31 +65,48 @@
 
     <div id="intro" class="tab-content active">
         <h1>Welcome to the WUSTL CIG's DL-PTED Project!</h1>
-
-        <p>
-            Deep learning may revolutionize the study of musculoskeletal conditions by automating the evaluation pipeline.
+    
+        <p>Deep learning may revolutionize the study of musculoskeletal conditions by automating the evaluation pipeline.
             This project seeks to develop tissue and modality-specific DL algorithms for automatic evaluation of disease stage
             to explore post-traumatic elbow conditions using histology, computed tomography, and magnetic resonance imaging.
-            This project is in collaboration with the Musculoskeletal Soft Tissue Laboratory.
-        </p>
+            This project is in collaboration with the Musculoskeletal Soft Tissue Laboratory. </p>
+    
+        <p>In our study, we propose the usage of STEGO, an unsupervised semantic segmentation model, to 
+            identify tissue types in MRIs in a completely unsupervised manner by contrastively associating
+            learning similar and different parts of image within our dataset. MRIs of Long-Evans hooded 
+            rats to study the pathology of post traumatic joint contracture on the tissue level. 
+            We use STEGO to categorize both the whole elbow MRI and the anterior capsule of the elbow. </p>
+    
+        <p>Below, we visualize two GIFs of a non-injured elbow (left) and a severely injured elbow (right).</p>
+    
+        <!-- Container for GIFs -->
+        <div class="gif-container">
+            <!-- First GIF -->
+            <img src="control.gif" alt="Non-injured elbow" style="width: 300px; height: 200px; margin-right: 10px;">
+            <!-- Second GIF -->
+            <img src="injure.gif" alt="Severely injured elbow" style="width: 300px; height: 200px;">
+        </div>
     </div>
+     
 
-    <div id="viewer" class="tab-content">
-        <div id="viewer-container">
+    <div id="viewer-container">
+        <div id="viewer" class="tab-content">
             <div class="papaya" data-params="params"></div>
         </div>
+
+        <!-- Popup Container -->
         <div id="viewer-popup" class="viewer-popup">
-            <span class="viewer-close" onclick="closeViewerPopup()">&times;</span>
-            <p>To start the viewer, add an image from under the File tab. When changing between scans, please hit "Close All" in the File tab to close the currently opened scan.</p>
+            <span class="viewer-close" onclick="closePopup()">Close</span>
+            <p>Welcome to the MRI Viewer! To use the viewer, click the expand button in the top right to center it on your page. <br><br> Go to the Files tab in the top left to add new scans and their respective labels. Always load the scan before its respective label. You can also adjust the transparency and colorscale of the labels in the top right corner. <br><br> When you're finished looking at a scan and ready for another, don't forget to hit "Close all Images" in the Files Tab!</p>
         </div>
     </div>
 
     <script>
-
-        var params = [""];
+        var params = [];
         params["mainView"] = "sagittal";
+        params["worldSpace"] = true;
+        params["images"] = ["data/Capsule42R_img.nii.gz"];
         params["showOrientation"] = true;
-        params["worldspace"] = true;
         params["expandable"] = true;
           
         function openTab(tabName) {
@@ -100,15 +118,17 @@
             document.getElementById(tabName).classList.add("active");
 
             if (tabName === 'viewer') {
-                document.getElementById('viewer-popup').style.display = 'block';
+                document.getElementById('viewer-popup').classList.add('active');
             } else {
-                document.getElementById('viewer-popup').style.display = 'none';
+                document.getElementById('viewer-popup').classList.remove('active');
                 // Reload the page when switching back to the Introduction tab
                 window.location.reload();
             }
         }
 
-    </script>
+        function closePopup() {
+            document.getElementById('viewer-popup').classList.remove('active');
+        }
+    </script> 
 </body>
-
 </html>
